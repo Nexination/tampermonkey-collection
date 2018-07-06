@@ -4,7 +4,7 @@
 // @version      0.2
 // @description  Compacts the Trello view and adds some more info.
 // @author       https://github.com/Nexination
-// @match        https://trello.com/b/h3LFF8Ci*
+// @match        https://trello.com/b/*
 // @grant        GM_addStyle
 // ==/UserScript==
 'use strict';
