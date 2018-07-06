@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Trello Compactor
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.21
 // @description  Compacts the Trello view and adds some more info.
 // @author       https://github.com/Nexination
 // @match        https://trello.com/b/*
