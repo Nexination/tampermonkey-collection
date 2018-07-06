@@ -41,11 +41,14 @@
     GM_addStyle(styleComposite);
 
     let cardLists = document.getElementsByClassName('js-list-content');
+    let cardCountTotal = 0;
     for(let i = 0; i < cardLists.length; i += 1) {
       let cardList = cardLists[i];
       let cardCount = cardList.getElementsByClassName('list-cards')[0].children.length;
       cardList.getElementsByClassName('list-header-name')[0].value += ' (' + cardCount + ')';
+      cardCountTotal += cardCount;
     };
+    document.getElementsByClassName('board-header-btn-text')[0].innerText += ' (' + cardCountTotal + ')';
   };
   let timer = setTimeout(() => {delayRun();}, 1500);
 })();
