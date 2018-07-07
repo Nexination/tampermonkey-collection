@@ -35,7 +35,7 @@
         };
     } else if(window.location.pathname.search('/dashboard') !== -1) {
         let watchButton = document.getElementById('start-watching');
-        if(watchButton.getAttribute("disabled") === undefined) {
+        if(watchButton.getAttribute("disabled") === null) {
             watchButton.click();
         };
     } else if(window.location.pathname.search('/player') !== -1) {
