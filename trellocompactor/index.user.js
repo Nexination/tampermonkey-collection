@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Trello Compactor
 // @namespace    http://tampermonkey.net/
-// @version      0.21
+// @version      0.22
 // @description  Compacts the Trello view and adds some more info.
 // @author       https://github.com/Nexination
 // @match        https://trello.com/b/*
@@ -15,7 +15,7 @@
       ".js-badges .badge, .list-card-details .list-card-members": {
         "display": "none"
       }
-      , ".js-badges .is-due-future, .js-badges .is-due-now, .js-badges .is-due-soon, .js-badges .is-unread-notification": {
+      , ".js-badges .is-due-future, .js-badges .is-due-now, .js-badges .is-due-soon, .js-badges .is-due-past, .js-badges .is-unread-notification": {
         "display": "inline !important"
       }
       , ".js-badges .badge-text": {
