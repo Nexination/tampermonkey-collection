@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MultiBuy World Bot
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.21
 // @description  Automatically watches MultiBuy World AD's.
 // @author       https://github.com/Nexination
 // @match        https://multibuyworld.com
