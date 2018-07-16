@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         MultiBuy World Bot
 // @namespace    http://tampermonkey.net/
-// @version      0.21
+// @version      0.22
 // @description  Automatically watches MultiBuy World AD's.
 // @author       https://github.com/Nexination
 // @match        https://multibuyworld.com
@@ -10,11 +10,11 @@
 // @noframes
 // @grant        GM_setValue
 // @grant        GM_getValue
-
+// @require      https://github.com/Nexination/tampermonkey-collection/raw/master/lib/microgui.js
 // ==/UserScript==
+'use strict';
 
-(function(context) {
-    'use strict';
+(function() {
     if(window.location.pathname === '/') {
         if(GM_getValue('mbwUsername') === undefined) {
           GM_setValue('mbwUsername', '');
