@@ -1,15 +1,17 @@
 // ==UserScript==
 // @name         Trello Compactor
 // @namespace    http://tampermonkey.net/
-// @version      0.22
+// @version      0.23
 // @description  Compacts the Trello view and adds some more info.
 // @author       https://github.com/Nexination
 // @match        https://trello.com/b/*
 // @grant        GM_addStyle
+// @require      https://github.com/Nexination/tampermonkey-collection/raw/master/lib/microgui.js
 // ==/UserScript==
 'use strict';
 
-(function(context) {
+(function() {
+  let microGui = new MicroGui();
   let delayRun = function() {
     let styleObject = {
       ".js-badges .badge, .list-card-details .list-card-members": {
@@ -42,13 +44,17 @@
 
     let cardLists = document.getElementsByClassName('js-list-content');
     let cardCountTotal = 0;
+    let uiList = [];
+
     for(let i = 0; i < cardLists.length; i += 1) {
       let cardList = cardLists[i];
       let cardCount = cardList.getElementsByClassName('list-cards')[0].children.length;
-      cardList.getElementsByClassName('list-header-name')[0].value += ' (' + cardCount + ')';
       cardCountTotal += cardCount;
+
+      uiList.push({"type": "text", "value": cardList.getElementsByClassName('list-header-name')[0].value + " (" + cardCount + ")"});
     };
-    document.getElementsByClassName('board-header-btn-text')[0].innerText += ' (' + cardCountTotal + ')';
+    uiList.push({"type": "text", "value": "Total: " + cardCountTotal});
+    microGui.createGui(uiList);
   };
   let timer = setTimeout(() => {delayRun();}, 1500);
 })();

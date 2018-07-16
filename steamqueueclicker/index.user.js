@@ -8,9 +8,9 @@
 // @match        https://store.steampowered.com/app/*
 // @grant        none
 // ==/UserScript==
+'use strict';
 
 (function() {
-    'use strict';
 
     // Start a new Queue
     let searchForQueueButton = document.getElementById('refresh_queue_btn');
