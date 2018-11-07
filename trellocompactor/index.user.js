@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Trello Compactor
 // @namespace    http://tampermonkey.net/
-// @version      0.23
+// @version      0.24
 // @description  Compacts the Trello view and adds some more info.
 // @author       https://github.com/Nexination
 // @match        https://trello.com/b/*
@@ -12,6 +12,24 @@
 
 (function() {
   let microGui = new MicroGui();
+  let indexer = function() {
+    let cardLists = document.getElementsByClassName('js-list-content');
+    let cardCountTotal = 0;
+    let uiList = [];
+
+    for(let i = 0; i < cardLists.length; i += 1) {
+      let cardList = cardLists[i];
+      let cardCount = cardList.getElementsByClassName('list-cards')[0].children.length;
+      cardCountTotal += cardCount;
+
+      uiList.push({"type": "text", "value": cardList.getElementsByClassName('list-header-name')[0].value + " (" + cardCount + ")"});
+    };
+    uiList.push({"type": "text", "value": "Total: " + cardCountTotal});
+    microGui.clearGui();
+    microGui.createGui(uiList);
+
+    let timer = setTimeout(() => {indexer();}, 10000);
+  };
   let delayRun = function() {
     let styleObject = {
       ".js-badges .badge, .list-card-details .list-card-members": {
@@ -42,19 +60,8 @@
 
     GM_addStyle(styleComposite);
 
-    let cardLists = document.getElementsByClassName('js-list-content');
-    let cardCountTotal = 0;
-    let uiList = [];
-
-    for(let i = 0; i < cardLists.length; i += 1) {
-      let cardList = cardLists[i];
-      let cardCount = cardList.getElementsByClassName('list-cards')[0].children.length;
-      cardCountTotal += cardCount;
-
-      uiList.push({"type": "text", "value": cardList.getElementsByClassName('list-header-name')[0].value + " (" + cardCount + ")"});
-    };
-    uiList.push({"type": "text", "value": "Total: " + cardCountTotal});
-    microGui.createGui(uiList);
+    indexer();
   };
+
   let timer = setTimeout(() => {delayRun();}, 1500);
 })();
