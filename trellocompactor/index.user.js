@@ -21,7 +21,7 @@ class TrelloCompactor {
 
     this.microGui = new MicroGui(coordinates);
     
-    let timer = setTimeout(() => {delayRun();}, 1500);
+    let timer = setTimeout(() => {this.delayRun();}, 1500);
     this.indexer();
   }
   delayRun() {
@@ -70,7 +70,7 @@ class TrelloCompactor {
     this.microGui.clearGui();
     this.microGui.createGui(uiList);
 
-    let timer = setTimeout(() => {indexer();}, 10000);
+    let timer = setTimeout(() => {this.indexer();}, 10000);
   };
 };
 let trelloCompactor = new TrelloCompactor();
