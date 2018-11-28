@@ -1,36 +1,33 @@
 // ==UserScript==
 // @name         Trello Compactor
 // @namespace    http://tampermonkey.net/
-// @version      0.24
+// @version      0.25
 // @description  Compacts the Trello view and adds some more info.
 // @author       https://github.com/Nexination
 // @match        https://trello.com/b/*
 // @grant        GM_addStyle
+// @grant        GM_setValue
+// @grant        GM_getValue
 // @require      https://github.com/Nexination/tampermonkey-collection/raw/master/lib/microgui.js
 // ==/UserScript==
-'use strict';
+//'use strict';
 
-(function() {
-  let microGui = new MicroGui();
-  let indexer = function() {
-    let cardLists = document.getElementsByClassName('js-list-content');
-    let cardCountTotal = 0;
-    let uiList = [];
-
-    for(let i = 0; i < cardLists.length; i += 1) {
-      let cardList = cardLists[i];
-      let cardCount = cardList.getElementsByClassName('list-cards')[0].children.length;
-      cardCountTotal += cardCount;
-
-      uiList.push({"type": "text", "value": cardList.getElementsByClassName('list-header-name')[0].value + " (" + cardCount + ")"});
+class TrelloCompactor {
+  constructor() {
+    if (GM_getValue('coordinates') === undefined) {
+      GM_setValue('coordinates', {"x": 25, "y": 700});
     };
-    uiList.push({"type": "text", "value": "Total: " + cardCountTotal});
-    microGui.clearGui();
-    microGui.createGui(uiList);
+    let coordinates = GM_getValue('coordinates');
 
-    let timer = setTimeout(() => {indexer();}, 10000);
+    this.microGui = new MicroGui(coordinates);
+    
+    let timer = setTimeout(() => {delayRun();}, 1500);
+    this.indexer();
+  }
+  delayRun() {
+    this.addStyle();
   };
-  let delayRun = function() {
+  addStyle() {
     let styleObject = {
       ".js-badges .badge, .list-card-details .list-card-members": {
         "display": "none"
@@ -47,9 +44,7 @@
       }
       ,
     };
-
     let styleComposite = '';
-
     for(let i in styleObject) {
       styleComposite += i + '{\n';
       for(let j in styleObject[i]) {
@@ -57,11 +52,25 @@
       };
       styleComposite += "}\n";
     };
-
     GM_addStyle(styleComposite);
+  }
+  indexer() {
+    let cardLists = document.getElementsByClassName('js-list-content');
+    let cardCountTotal = 0;
+    let uiList = [];
 
-    indexer();
+    for(let i = 0; i < cardLists.length; i += 1) {
+      let cardList = cardLists[i];
+      let cardCount = cardList.getElementsByClassName('list-cards')[0].children.length;
+      cardCountTotal += cardCount;
+
+      uiList.push({"type": "text", "value": cardList.getElementsByClassName('list-header-name')[0].value + " (" + cardCount + ")"});
+    };
+    uiList.push({"type": "text", "value": "Total: " + cardCountTotal});
+    this.microGui.clearGui();
+    this.microGui.createGui(uiList);
+
+    let timer = setTimeout(() => {indexer();}, 10000);
   };
-
-  let timer = setTimeout(() => {delayRun();}, 1500);
-})();
+};
+let trelloCompactor = new TrelloCompactor();
