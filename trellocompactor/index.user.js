@@ -22,10 +22,10 @@ class TrelloCompactor {
     this.microGui = new MicroGui(coordinates);
     
     let timer = setTimeout(() => {this.delayRun();}, 1500);
-    this.indexer();
   }
   delayRun() {
     this.addStyle();
+    this.indexer();
   };
   addStyle() {
     let styleObject = {
