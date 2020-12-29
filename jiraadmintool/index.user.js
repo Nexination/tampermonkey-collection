@@ -21,14 +21,12 @@ class JiraAdminTools {
 
         this.microGui = new MicroGui(coordinates);
 
-        //let timer = setTimeout(() => {this.delayRun();}, 3000);
         let uiList = [];
         uiList.push({"type": "button", "value": "Do the thing", "action": () => {this.indexer();}});
         this.microGui.addGui(uiList);
     }
     delayRun() {
         this.indexer();
-        //let timer = setTimeout(() => {this.delayRun();}, 3000);
     }
     /*makeGui(uiList) {
         this.microGui.clearGui();
@@ -69,20 +67,11 @@ class JiraAdminTools {
                     if(tempPrompt.innerText.toLowerCase() === 'revoke access') {
                         j = tempSubPrompts.length;
                         tempPrompt.click();
-                        //let timer = setTimeout(() => {this.stupidOkayButton('css-x62i23');}, 3000);
-                        //let tempOkayButton = document.getElementsByClassName('css-x62i23')[0];
                     };
                 };
             };
             this.okayRevokes('css-1yfnrso');// !important
-            //$0.getElementsByTagName('td')[3].getElementsByTagName('span')[14].innerText
-            //console.log(document.getElementsByClassName('css-x62i23'));
-            //let tempYear = tempDate.getFullYear();
-            //uiList.push({"type": "text", "value": tempYear});
-            //i = tableRows.length;
         };
-        //this.microGui.addGui(uiList);
-        //this.microGui.clearGui();
     };
 };
 let jiraAdminTools = new JiraAdminTools();
