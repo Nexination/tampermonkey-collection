@@ -67,7 +67,8 @@ class TrelloCompactor {
             uiList.push({"type": "text", "value": cardList.getElementsByClassName('list-header-name')[0].value + " (" + cardCount + ")"});
         };
         uiList.push({"type": "text", "value": "Total: " + cardCountTotal});
-        this.microGui.addGui(uiList);
+        this.microGui.clearGui();
+	this.microGui.addGui(uiList);
 
         let timer = setTimeout(() => {this.indexer();}, 10000);
     };
