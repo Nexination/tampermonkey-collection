@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Trello Compactor
 // @namespace    http://tampermonkey.net/
-// @version      0.27
+// @version      0.28
 // @description  Compacts the Trello view and adds some more info.
 // @author       https://github.com/Nexination
 // @match        https://trello.com/b/*
@@ -68,7 +68,7 @@ class TrelloCompactor {
         };
         uiList.push({"type": "text", "value": "Total: " + cardCountTotal});
         this.microGui.clearGui();
-	this.microGui.addGui(uiList);
+        this.microGui.addGui(uiList);
 
         let timer = setTimeout(() => {this.indexer();}, 10000);
     };
