@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Jira Admin Tools
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  Enables a lot of automation inside the Jira admin interface.
 // @author       https://github.com/Nexination
 // @match        https://admin.atlassian.com/*
@@ -28,17 +28,6 @@ class JiraAdminTools {
     delayRun() {
         this.indexer();
     }
-    /*makeGui(uiList) {
-        this.microGui.clearGui();
-        this.microGui.addGui(uiList);
-    }
-    stupidOkayButton(buttonClass) {
-        console.log(buttonClass);
-        console.log(document.getElementsByClassName(buttonClass));
-    }*/
-    oleLogger() {
-        console.log('lay down a log');
-    }
     okayRevokes(revokeCardClass) {
         let revokeCards = document.getElementsByClassName(revokeCardClass);//[0].getElementsByTagName('button')[0].click();
         for(let i = 0; i < revokeCards.length; i += 1) {
@@ -59,7 +48,7 @@ class JiraAdminTools {
                 tempDate = new Date(tempTextDate);
             };
             if(tempDate.getFullYear() < 2020) {
-                let tempPrompts = tempRow.getElementsByTagName('td')[3]; //Item-z6qfkt-2
+                let tempPrompts = tempRow.getElementsByTagName('td')[3];
                 tempPrompts.getElementsByTagName('button')[1].click();
                 let tempSubPrompts = tempPrompts.getElementsByTagName('span');
                 for(let j = 0; j < tempSubPrompts.length; j += 1) {
@@ -70,7 +59,7 @@ class JiraAdminTools {
                     };
                 };
             };
-            this.okayRevokes('css-1yfnrso');// !important
+            this.okayRevokes('css-1yfnrso');
         };
     };
 };
