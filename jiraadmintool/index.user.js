@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Jira Admin Tools
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.21
 // @description  Enables a lot of automation inside the Jira admin interface.
 // @author       https://github.com/Nexination
 // @match        https://admin.atlassian.com/*
