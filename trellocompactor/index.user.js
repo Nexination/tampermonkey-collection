@@ -8,7 +8,7 @@
 // @grant        GM_addStyle
 // @grant        GM_setValue
 // @grant        GM_getValue
-// @require      https://github.com/Nexination/tampermonkey-collection/raw/master/lib/microgui.js
+// @require      https://raw.githubusercontent.com/Nexination/tampermonkey-collection/master/lib/microgui.js
 // ==/UserScript==
 //'use strict';
 
